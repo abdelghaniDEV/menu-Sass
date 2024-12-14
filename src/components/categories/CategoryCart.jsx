@@ -33,8 +33,10 @@ export default function CategoryCart({ category, index }) {
 
   const dispatch = useDispatch();
 
+  
+
   const filterProduct = products?.filter(
-    (product) => product.categoryId._id === category._id
+    (product) => product.categoryId && product?.categoryId._id === category._id
   );
 
   const handleDelete = async () => {

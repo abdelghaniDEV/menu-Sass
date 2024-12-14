@@ -22,21 +22,26 @@ import {
 import { Link, useNavigate } from "react-router";
 import Navbar from "./Navbar";
 
-export default function Header({openMenu , setOpenMenu}) {
-  const navigate = useNavigate()
+export default function Header({ openMenu, setOpenMenu }) {
+  const navigate = useNavigate();
   const profile = useSelector((state) => state.profile);
+  const menu = useSelector((state) => state.menu._id)
+  console.log(menu)
 
   const handlerLogOut = () => {
     localStorage.removeItem("authToken");
-    navigate('/login')
-  }
+    navigate("/login");
+  };
 
   return (
     <div className="py-4 ">
       <div className=" flex items-center justify-between relative">
         <div className="flex gap-2 items-center ">
-        <AlignJustify className="w-8 h-8 md:hidden" onClick={() => setOpenMenu(true)}/>
-        {/* <div className="absolute top-0 w-full bg-[#F9F9F9] h-screen flex justify-center   " >
+          <AlignJustify
+            className="w-8 h-8 md:hidden"
+            onClick={() => setOpenMenu(true)}
+          />
+          {/* <div className="absolute top-0 w-full bg-[#F9F9F9] h-screen flex justify-center   " >
           <Navbar />
         </div> */}
           <img
@@ -82,7 +87,10 @@ export default function Header({openMenu , setOpenMenu}) {
                   {profile?.subscription?.status}
                 </span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => handlerLogOut()} className="flex cursor-pointer items-center gap-1 bg-[#FDD8E0] text-[#F4164F] font-[500]">
+              <DropdownMenuItem
+                onClick={() => handlerLogOut()}
+                className="flex cursor-pointer items-center gap-1 bg-[#FDD8E0] text-[#F4164F] font-[500]"
+              >
                 <LogOut />
                 <span>Logout</span>
               </DropdownMenuItem>
@@ -93,14 +101,20 @@ export default function Header({openMenu , setOpenMenu}) {
       <Card className="py-2 px-2 md:px-6 flex justify-between items-center mt-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-[20px] md:text-[30px] font-[600] md:leading-[30px]">Menu</h1>
+            <h1 className="text-[20px] md:text-[30px] font-[600] md:leading-[30px]">
+              Menu
+            </h1>
             <HandPlatter />
           </div>
           <p className="text-[14px] md:text-[18px]">Craft Your Digital Menu</p>
         </div>
-        <Card className="p-1 md:p-2 flex gap-2 items-center bg-main-secondary">
-            <span className="text-[14px] nd:text-[16px] font-[600]">OPPEN APP</span>
+        <Card className="p-1 md:p-2  bg-main-secondary">
+          <a href={`https://menu-demo-aokb.vercel.app//${menu}`} className="flex gap-2 items-center">
+            <span className="text-[14px] nd:text-[16px] font-[600]">
+              OPPEN APP
+            </span>
             <SquareChevronRight />
+          </a>
         </Card>
       </Card>
     </div>

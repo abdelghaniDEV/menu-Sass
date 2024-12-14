@@ -24,18 +24,34 @@ import meal01 from "../../assets/meal01.webp";
 import ViewProduct from "./ViewProduct";
 import { Edit, EllipsisVertical, Eye, Trash2 } from "lucide-react";
 import { useState } from "react";
+import axios from "axios";
 
 export default function ProductCart({ product }) {
-  const [openDelete , setOpenDelete] = useState(false)
+  const [openDelete, setOpenDelete] = useState(false);
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/products/owner/${product._id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("authToken"),
+          },
+        }
+      );
+      console.log("Product deleted successfully", response.data);
+      setOpenDelete(false)
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
   return (
     <>
       <TableRow>
         <TableCell className="hidden md:table-cell">
           <img
             src={product?.image ? product?.image : meal01}
-            width={50}
-            height={50}
-            className="rounded-full"
+            className="rounded-full w-[50px] h-[50px]"
             alt="meal01"
           />
         </TableCell>
@@ -73,8 +89,7 @@ export default function ProductCart({ product }) {
                   this Meal and remove data from our servers.
                 </p>
                 <div className="flex gap-3">
-                  <Button className=" bg-[#FDD8E0]  text-[#F4164F]  rounded-[8px]  p-2 text-center">
-                    {" "}
+                  <Button className=" bg-[#FDD8E0]  text-[#F4164F]  rounded-[8px]  p-2 text-center" onClick={() => handleDelete()}>
                     Delete
                   </Button>
                   <DialogTrigger className=" bg-main-primary  text-[white] rounded-[8px]  p-2 text-center">
@@ -93,7 +108,10 @@ export default function ProductCart({ product }) {
               <DropdownMenuLabel>{product?.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="">
-                <Link to={`edit/${product._id}`} className="flex gap-2 items-center">
+                <Link
+                  to={`edit/${product._id}`}
+                  className="flex gap-2 items-center"
+                >
                   <Edit className="text-[#76a963]" />
                   <span>Edit</span>
                 </Link>
@@ -102,7 +120,10 @@ export default function ProductCart({ product }) {
                 <Eye className="text-[#b58df2]" />
                 <span>View</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="" onClick={() => setOpenDelete(true)}>
+              <DropdownMenuItem
+                className=""
+                onClick={() => setOpenDelete(true)}
+              >
                 <Trash2 className="text-[#F4164F]" />
                 <span className="">Delete</span>
               </DropdownMenuItem>
