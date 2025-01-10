@@ -106,7 +106,7 @@ export default function SideBar({ openMenu, setOpenMenu }) {
 
       <div className="pt-5 flex flex-col justify-between h-screen ">
         <Navbar setOpenMenu={setOpenMenu} />
-        <Card className="p-3 flex flex-col justify-center items-center gap-2 bg-custom-bg ">
+        <Card className="p-3 flex flex-col justify-center items-center gap-2 bg-custom-bg absolute bottom-0 left-1 ">
           <h2 className="font-[600] text-[18px] leading-[20px]">
             Becom Pro Access
           </h2>

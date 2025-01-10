@@ -1,5 +1,7 @@
 import {
+  GraduationCap,
     HandPlatter,
+    Headset,
     LayoutDashboard,
     Store,
     Tags,
@@ -14,10 +16,10 @@ import { Link } from "react-router";
       <>
         <nav className="">
           <ul className="flex flex-col gap-7 ">
-            <li className="flex gap-3 items-center">
+            <Link to={"/dashboard"} className="flex gap-3 items-center">
               <HandPlatter />
               <span>Menu</span>
-            </li>
+            </Link>
             <Link to={'/dashboard/categories'} className="flex gap-3 items-center" onClick={() => setOpenMenu(false)}>
               <LayoutDashboard />
               <span>Categories</span>
@@ -34,6 +36,15 @@ import { Link } from "react-router";
             <Link to={'/dashboard/profile'} className="flex gap-3 items-center" onClick={() => setOpenMenu(false)}>
               <UserCog />
               <span>Profile</span>
+            </Link>
+            <hr />
+            <Link to={'/dashboard/profile'} className="flex gap-3 items-center" onClick={() => setOpenMenu(false)}>
+              <GraduationCap />
+              <span>How it Works</span>
+            </Link>
+            <Link to={'/dashboard/profile'} className="flex gap-3 items-center" onClick={() => setOpenMenu(false)}>
+              <Headset />
+              <span>Support</span>
             </Link>
           </ul>
         </nav>

@@ -25,11 +25,13 @@ import { fetchCategories } from "./redux/slices/categoriesSlice";
 import { fetchProfile } from "./redux/slices/profileSlice";
 import { Navigate } from "react-router-dom";
 import Menu from "./pages/Menu";
+import logo from "./assets/logo-v3.png"
+import animate from "./assets/aniamte.svg"
 
 const ProtectedRoute = ({ children }) => {
-  // const dispatch = useDispatch();
-  // dispatch(fetchProfile());
+  
   const profile = useSelector((state) => state.profile);
+  console.log(profile)
   const token = localStorage.getItem("authToken");
   if (!token) {
     return <Navigate to="/login" replace />;
@@ -42,6 +44,7 @@ const ProtectedRoute = ({ children }) => {
 const DashboardLayout = () => {
   const dispatch = useDispatch();
   const [openMenu , setOpenMenu] = useState(false)
+  
 
   useEffect(() => {
     // Fetch data when DashboardLayout is loaded
@@ -79,6 +82,37 @@ function App() {
   //   dispatch(fetchCategories());
   //   dispatch(fetchProfile());
   // }, []);
+  const profile = useSelector((state) => state.profile);
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true); // تعيين حالة التحميل إلى true
+      await Promise.all([
+        dispatch(fetchMenu()),
+        dispatch(fetchRestuarant()),
+        dispatch(fetchCategories()),
+        dispatch(fetchProfile()),
+      ]);
+      setLoading(false); // تعيين حالة التحميل إلى false بعد الانتهاء
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="reltive">
+          <img
+            src={animate}
+            className="absolute top-[50%] w-[120px] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+          />
+          <img src={logo} className="w-[60px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" />
+        </div>
+    )
+  }
+
   return (
     <Routes>
       <Route path="/" element={<HomeLayout />}>
@@ -88,6 +122,7 @@ function App() {
         <Route path="/" element={<Home />} />
       </Route>
 
+      
       <Route
         path="/dashboard"
         element={

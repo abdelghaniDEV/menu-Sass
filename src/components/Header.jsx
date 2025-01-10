@@ -25,7 +25,7 @@ import Navbar from "./Navbar";
 export default function Header({ openMenu, setOpenMenu }) {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.profile);
-  const menu = useSelector((state) => state.menu._id)
+  const menu = useSelector((state) => state.menu)
   console.log(menu)
 
   const handlerLogOut = () => {
@@ -109,9 +109,9 @@ export default function Header({ openMenu, setOpenMenu }) {
           <p className="text-[14px] md:text-[18px]">Craft Your Digital Menu</p>
         </div>
         <Card className="p-1 md:p-2  bg-main-secondary">
-          <a href={`https://menu-demo-aokb.vercel.app//${menu}`} className="flex gap-2 items-center">
+          <a href={`https://menu-demo-aokb.vercel.app//${menu.name}-${menu._id}`} className="flex gap-2 items-center">
             <span className="text-[14px] nd:text-[16px] font-[600]">
-              OPPEN APP
+              OPPEN MENU
             </span>
             <SquareChevronRight />
           </a>

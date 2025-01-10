@@ -16,8 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { fetchMenu } from "../../redux/slices/menuSlice";
 import { ToastContainer, toast } from "react-toastify";
-import leadingImg from "../../assets/loading.svg"
-
+import leadingImg from "../../assets/loading.svg";
 
 export default function EditeProduct() {
   const prams = useParams();
@@ -37,11 +36,11 @@ export default function EditeProduct() {
   });
   const [oldCategory, setOldCategory] = useState("");
   const [prevUrl, setPrevUrl] = useState("");
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const products = useSelector((state) => state.menu.products);
   const categories = useSelector((state) => state.categories);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const product = products?.find((product) => product._id === prams.productID);
 
@@ -108,7 +107,7 @@ export default function EditeProduct() {
       if (data.category_id) formData.append("categoryId", data.category_id);
 
       try {
-        setLoading(true)
+        setLoading(true);
         const response = await axios.patch(
           `${import.meta.env.VITE_API_URL}/products/owner/${prams.productID}`,
           formData,
@@ -119,13 +118,13 @@ export default function EditeProduct() {
           }
         );
         console.log("sucessfully updated product", response.data);
-        dispatch(fetchMenu())
-        toast.success("sucessfully updated product")
-        setLoading(false)
+        dispatch(fetchMenu());
+        toast.success("sucessfully updated product");
+        setLoading(false);
       } catch (err) {
         console.error("error updating product", err);
-        toast.success("network error")
-        setLoading(false)
+        toast.success("network error");
+        setLoading(false);
       }
     }
   };
@@ -135,21 +134,25 @@ export default function EditeProduct() {
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2 ">
           <Link
-            to="/products"
+            to="/dashboard/products"
             className="border-[1px] p-3 hover:bg-main-secondary cursor-pointer  "
           >
             <ArrowLeft className=" w-6 h-6 text-main-primary  " />
           </Link>
           <div>
             <h1 className="text-[30px] leading-[30px] md:text-[30px] font-[600] ">
-              Create Meal
+              Edit Meal
             </h1>
             <span>List Meals</span>
           </div>
         </div>
 
-        <Button className="">
-          <span className="hidden md:block">Create Meal</span>
+        <Button onClick={(e) => handleSubmit(e)}>
+          {loading ? (
+            <img src={leadingImg} width={30} alt="loading" />
+          ) : (
+            <span> Edite Meal</span>
+          )}
         </Button>
       </div>
       <div className="py-6">
@@ -214,7 +217,7 @@ export default function EditeProduct() {
               {loading ? (
                 <img src={leadingImg} width={30} alt="loading" />
               ) : (
-                <span> Create Category</span>
+                <span> Edite Meal</span>
               )}
             </Button>
           </div>

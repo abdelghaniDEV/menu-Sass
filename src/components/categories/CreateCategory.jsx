@@ -49,6 +49,7 @@ export default function CreateCategory({ setOpenCreate }) {
     } catch (e) {
       console.error("error adding category", e);
       setLoading(false);
+      toast.error(e.response.data.message);
     }
   };
   return (

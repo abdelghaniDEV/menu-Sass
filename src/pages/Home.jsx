@@ -181,7 +181,7 @@ export default function Home() {
           <Card>
             <img
               src={qrMenu}
-              className="h-[200px] rounded-t-[10px]"
+              className="h-[200px] w-full rounded-t-[10px]"
               alt="Easy Menu Items and Prices Updates"
             />
             <div className="p-4 text-center">
@@ -198,7 +198,7 @@ export default function Home() {
           <Card>
             <img
               src={restMenu}
-              className="h-[200px] rounded-t-[10px]"
+              className="h-[200px] w-full rounded-t-[10px]"
               alt="Easy Menu Items and Prices Updates"
             />
             <div className="p-4 text-center">
@@ -214,7 +214,7 @@ export default function Home() {
           <Card>
             <img
               src={restService}
-              className="h-[200px] rounded-t-[10px]"
+              className="h-[200px] w-full rounded-t-[10px]"
               alt="Easy Menu Items and Prices Updates"
             />
             <div className="p-4 text-center">
@@ -230,7 +230,7 @@ export default function Home() {
           <Card>
             <img
               src={menuF}
-              className="h-[200px] rounded-t-[10px]"
+              className="h-[200px] w-full rounded-t-[10px]"
               alt="Easy Menu Items and Prices Updates"
             />
             <div className="p-4 text-center">
@@ -246,7 +246,7 @@ export default function Home() {
           <Card>
             <img
               src={restCost}
-              className="h-[200px] rounded-t-[10px]"
+              className="h-[200px] w-full rounded-t-[10px]"
               alt="Easy Menu Items and Prices Updates"
             />
             <div className="p-4 text-center">
@@ -262,7 +262,7 @@ export default function Home() {
           <Card>
             <img
               src={restFood}
-              className="h-[200px] rounded-t-[10px] w-full"
+              className="h-[200px]   rounded-t-[10px] w-full"
               alt="Easy Menu Items and Prices Updates"
             />
             <div className="p-4 text-center">

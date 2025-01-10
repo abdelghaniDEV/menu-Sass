@@ -32,33 +32,35 @@ export default function Login() {
   const handelRedirect = (data) => {
     if(data.user.isInfoAvailable) {
       navigate('/dashboard');
+     
     }else {
       navigate('/onboarding');
+     
     }
   }
   // check data after send
   const checkData = () => {
     let isValid = true;
 
-    // check email
-    if (data.email === "") {
-      setError((prev) => ({
-        ...prev,
-        email: "Email is required.",
-      }));
-      isValid = false;
-    } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      setError((prev) => ({
-        ...prev,
-        email: "Please enter a valid email address.",
-      }));
-      isValid = false;
-    } else {
-      setError((prev) => ({
-        ...prev,
-        email: "",
-      }));
-    }
+      // check email
+      if (data.email === "") {
+        setError((prev) => ({
+          ...prev,
+          email: "Email is required.",
+        }));
+        isValid = false;
+      } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        setError((prev) => ({
+          ...prev,
+          email: "Please enter a valid email address.",
+        }));
+        isValid = false;
+      } else {
+        setError((prev) => ({
+          ...prev,
+          email: "",
+        }));
+      }
 
     // check password
     if (data.password === "") {

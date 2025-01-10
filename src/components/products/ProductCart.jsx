@@ -59,7 +59,7 @@ export default function ProductCart({ product }) {
         <TableCell>{product?.name}</TableCell>
         <TableCell>${product?.price}</TableCell>
         <TableCell>{product?.categoryId?.name}</TableCell>
-        <TableCell className="hidden md:table-cell">2023-01-25</TableCell>
+        <TableCell className="hidden md:table-cell">{new Date(product?.createdAt).toDateString()}</TableCell>
         <TableCell>
           <div className="md:grid grid-cols-3 gap-3 hidden md:block">
             <Button className="hidden md:block bg-[#76a963] text-white rounded-[8px] p-2 text-center">
