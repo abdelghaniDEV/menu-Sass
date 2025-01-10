@@ -40,7 +40,7 @@ export default function Header({ openMenu, setOpenMenu }) {
           className="w-8 h-8 md:hidden"
           onClick={() => setOpenMenu(true)}
         />
-        <div className="flex gap-2 items-center hidden md:block ">
+        <div className="md:flex gap-2 items-center hidden md:block ">
           {/* <div className="absolute top-0 w-full bg-[#F9F9F9] h-screen flex justify-center   " >
           <Navbar />
         </div> */}
