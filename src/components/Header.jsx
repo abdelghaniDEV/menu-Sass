@@ -25,8 +25,8 @@ import Navbar from "./Navbar";
 export default function Header({ openMenu, setOpenMenu }) {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.profile);
-  const menu = useSelector((state) => state.menu)
-  console.log(menu)
+  const menu = useSelector((state) => state.menu);
+  console.log(menu);
 
   const handlerLogOut = () => {
     localStorage.removeItem("authToken");
@@ -36,11 +36,11 @@ export default function Header({ openMenu, setOpenMenu }) {
   return (
     <div className="py-4 ">
       <div className=" flex items-center justify-between relative">
-        <div className="flex gap-2 items-center ">
-          <AlignJustify
-            className="w-8 h-8 md:hidden"
-            onClick={() => setOpenMenu(true)}
-          />
+        <AlignJustify
+          className="w-8 h-8 md:hidden"
+          onClick={() => setOpenMenu(true)}
+        />
+        <div className="flex gap-2 items-center hidden md:block ">
           {/* <div className="absolute top-0 w-full bg-[#F9F9F9] h-screen flex justify-center   " >
           <Navbar />
         </div> */}
@@ -109,7 +109,10 @@ export default function Header({ openMenu, setOpenMenu }) {
           <p className="text-[14px] md:text-[18px]">Craft Your Digital Menu</p>
         </div>
         <Card className="p-1 md:p-2  bg-main-secondary">
-          <a href={`https://menu-demo-aokb.vercel.app//${menu.name}-${menu._id}`} className="flex gap-2 items-center">
+          <a
+            href={`https://menu-demo-aokb.vercel.app//${menu.name}-${menu._id}`}
+            className="flex gap-2 items-center"
+          >
             <span className="text-[14px] nd:text-[16px] font-[600]">
               OPPEN MENU
             </span>

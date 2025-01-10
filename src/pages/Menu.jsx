@@ -105,13 +105,13 @@ export default function Menu() {
   };
 
   return (
-    <Card className="py-5 px-5 mx-6 flex gap-8 bg-white ">
+    <Card className="py-5 md:px-5 px-3 md:mx-6 flex gap-8 bg-white ">
       <div className=" ">
         <ToastContainer />
         <div className="flex flex-col gap-3">
           <Label className="">Restaurant Banner</Label>
 
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5">
             <div>
               <label
                 id="input-image"
@@ -159,27 +159,28 @@ export default function Menu() {
         </div>
         <div className="pt-6 ">
           <h2 className="font-[600] text-[20px] py-2">Color Settings</h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-2 gap-3">
             {/* color setting */}
-            <div className="flex flex-col gap-[9px]">
+            <div className="flex flex-col justify-center items-start gap-[9px]">
               <Label>Primary Color</Label>
               <div className="flex gap-1 items-center border-[1px] rounded-[20px] pr-3">
                 <Input
                   type="color"
                   id="style1"
                   value={Template.primaryColor}
+                  className=""
                   onChange={(e) =>
                     setTemplate((prev) => {
                       return { ...prev, primaryColor: e.target.value };
                     })
                   }
                 />
-                <span className="bg-gray-300 p-1 rounded-[10px]">
+                <span className="bg-gray-300 p-1 text-[13px] md:text-[16px] rounded-[10px]">
                   {Template.primaryColor}
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-[9px]">
+            <div className="flex flex-col justify-center items-start gap-[9px]">
               <Label>Background Color</Label>
               <div className="flex gap-1 items-center border-[1px]  rounded-[20px] pr-3">
                 <Input
@@ -193,12 +194,12 @@ export default function Menu() {
                     })
                   }
                 />
-                <span className="bg-gray-300 p-1 rounded-[10px]">
+                <span className="bg-gray-300 p-1 text-[13px] md:text-[16px] rounded-[10px]">
                   {Template.BackgroundColor}
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-[9px]">
+            <div className="flex flex-col justify-center items-start gap-[9px]">
               <Label>Text Color</Label>
               <div className="flex gap-1 items-center border-[1px] rounded-[20px] pr-3">
                 <Input
@@ -211,12 +212,12 @@ export default function Menu() {
                     })
                   }
                 />
-                <span className="bg-gray-300 p-1 rounded-[10px]">
+                <span className="bg-gray-300 p-1 text-[13px] md:text-[16px] rounded-[10px]">
                   {Template.textColor}
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-[9px]">
+            <div className="flex flex-col justify-center items-start gap-[9px]">
               <Label>Product Title </Label>
               <div className="flex gap-1 items-center border-[1px] rounded-[20px] pr-3">
                 <Input
@@ -229,7 +230,7 @@ export default function Menu() {
                     })
                   }
                 />
-                <span className="bg-gray-300 p-1 rounded-[10px]">
+                <span className="bg-gray-300 p-1 text-[13px] md:text-[16px] rounded-[10px]">
                   {Template.titleColor}
                 </span>
               </div>
@@ -305,7 +306,7 @@ export default function Menu() {
           </Button>
         </div>
       </div>
-      <div className="">
+      <div className="hidden md:block">
         <TemplateMenu Template={Template} />
       </div>
     </Card>
