@@ -1,25 +1,23 @@
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import logo from "../assets/logo-v2.png";
 import React, { useEffect, useState } from "react";
-import { Eye, LogIn } from "lucide-react";;
+import { Eye, LogIn } from "lucide-react";
 import axios from "axios";
 // import { useToast } from "@/hooks/use-toast"
-import loadingImg from "../assets/loading.svg"
+import loadingImg from "../assets/loading.svg";
 import { Link, useNavigate } from "react-router";
-import { ToastContainer, toast } from 'react-toastify';
-
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Login() {
   const notify = () => toast("Wow so easy!");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [loading , setLoading] = useState(false)
-  const [ShowPassword , setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [ShowPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -30,37 +28,43 @@ export default function Login() {
   });
 
   const handelRedirect = (data) => {
-    if(data.user.isInfoAvailable) {
-      navigate('/dashboard');
-     
-    }else {
-      navigate('/onboarding');
-     
+    const { isAcountVerified, isInfoAvailable } = data.user;
+  
+    if (!isAcountVerified) {
+      sendOtpCode()
+      return navigate("/verify-email");
     }
-  }
+  
+    if (isInfoAvailable) {
+      return navigate("/dashboard");
+    }
+  
+    return navigate("/onboarding");
+  };
+
   // check data after send
   const checkData = () => {
     let isValid = true;
 
-      // check email
-      if (data.email === "") {
-        setError((prev) => ({
-          ...prev,
-          email: "Email is required.",
-        }));
-        isValid = false;
-      } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        setError((prev) => ({
-          ...prev,
-          email: "Please enter a valid email address.",
-        }));
-        isValid = false;
-      } else {
-        setError((prev) => ({
-          ...prev,
-          email: "",
-        }));
-      }
+    // check email
+    if (data.email === "") {
+      setError((prev) => ({
+        ...prev,
+        email: "Email is required.",
+      }));
+      isValid = false;
+    } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setError((prev) => ({
+        ...prev,
+        email: "Please enter a valid email address.",
+      }));
+      isValid = false;
+    } else {
+      setError((prev) => ({
+        ...prev,
+        email: "",
+      }));
+    }
 
     // check password
     if (data.password === "") {
@@ -92,7 +96,7 @@ export default function Login() {
       formData.append("password", data.password);
       // send data to server
       try {
-        setLoading(true)
+        setLoading(true);
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/users/login`,
           {
@@ -110,9 +114,8 @@ export default function Login() {
         // save token in local storage
         localStorage.setItem("authToken", response.data.token);
         setLoading(false);
-        toast.success("sucessfully Logged in")
-        handelRedirect(response.data)
-        
+        toast.success("sucessfully Logged in");
+        handelRedirect(response.data);
       } catch (e) {
         setLoading(false);
         if (e.response) {
@@ -131,6 +134,28 @@ export default function Login() {
       }
     }
   };
+
+  // send otp if no verfication
+  const sendOtpCode = async () => {
+    // Handle sending OTP logic here
+   
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/send-verifay-otp`,{},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+      console.log("Successfully sent OTP", response.data);
+      // Handle success here
+    } catch (e) {
+      console.error("Error sending OTP: ", e);
+      
+      // Handle error here
+    }
+  }
 
   return (
     <div className="relative">
@@ -163,14 +188,17 @@ export default function Login() {
             <div className="flex flex-col gap-2 relative">
               <Label>Password</Label>
               <Input
-                type={ShowPassword ? 'text' : 'password'}
+                type={ShowPassword ? "text" : "password"}
                 placeholder="Entre your Password"
                 onChange={(e) => {
                   setData({ ...data, password: e.target.value });
                 }}
                 className={error.password && "border-red-500"}
               />
-              <Eye className="absolute right-[10px] w-5 h-5 top-[50%] cursor-pointer" onClick={() => setShowPassword(!ShowPassword)} />
+              <Eye
+                className="absolute right-[10px] w-5 h-5 top-[50%] cursor-pointer"
+                onClick={() => setShowPassword(!ShowPassword)}
+              />
               {error.password && (
                 <p className="text-[12px]  leading-[10px] absolute bottom-[-15px] text-red-500">
                   {error.password}
@@ -181,7 +209,11 @@ export default function Login() {
               className="mt-2 text-[16px]"
               onClick={(e) => handleSubmit(e)}
             >
-               {loading ?  <img src={loadingImg} width={30} alt="loading" /> : <span>Sign up</span>}
+              {loading ? (
+                <img src={loadingImg} width={30} alt="loading" />
+              ) : (
+                <span>Sign up</span>
+              )}
             </Button>
           </form>
 

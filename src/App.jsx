@@ -27,6 +27,7 @@ import { Navigate } from "react-router-dom";
 import Menu from "./pages/Menu";
 import logo from "./assets/logo-v3.png"
 import animate from "./assets/aniamte.svg"
+import Otp from "./pages/Otp";
 
 const ProtectedRoute = ({ children }) => {
   
@@ -119,6 +120,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/verify-email" element={<Otp />} />
         <Route path="/" element={<Home />} />
       </Route>
 

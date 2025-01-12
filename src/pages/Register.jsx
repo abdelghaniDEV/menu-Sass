@@ -138,7 +138,8 @@ export default function Register() {
         // save token in local storage
         localStorage.setItem("authToken", response.data.token);
         setLoading(false)
-        navigate('/onboarding');
+        // navigate('/onboarding');
+        navigate('/verify-email');
       } catch (e) {
         setLoading(false)
         
