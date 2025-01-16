@@ -42,7 +42,7 @@ export default function SideBar({ openMenu, setOpenMenu }) {
 
   return (
     <div
-      className={`bg-[#F9F9F9] px-5 w-[250px] h-full min-h-screen absolute z-[1000] 
+      className={`bg-[#F9F9F9] px-5 w-[250px] h-full min-h-screen absolute z-[1000] md:z-[10] 
   transform ${openMenu ? "translate-x-0" : "-translate-x-full"} 
   md:translate-x-0 transition-transform duration-300 ease-in-out md:relative py-4`}
     >

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { LayoutDashboard, Plus } from "lucide-react";
 import CategoryCart from "../components/categories/CategoryCart";
 import CreateCategory from "../components/categories/CreateCategory";
 import { useSelector } from "react-redux";
@@ -27,6 +27,76 @@ import { ToastContainer, toast } from "react-toastify";
 export default function Categories() {
   const [openCreate, setOpenCreate] = useState(false);
   const categories = useSelector((state) => state.categories);
+
+  
+  const SkeletonRow = () => {
+    return (
+      <TableRow>
+        <TableCell>
+          <Skeleton className="w-10 h-5" />
+        </TableCell>
+        <TableCell>
+          <Skeleton className="w-[200px] h-5" />
+        </TableCell>
+        <TableCell>
+          <Skeleton className="w-[100px] h-5" />
+        </TableCell>
+        <TableCell>
+          <Skeleton className="w-[200px] h-5" />
+        </TableCell>
+        <TableCell>
+          <Skeleton className="w-[200px] h-5" />
+        </TableCell>
+      </TableRow>
+    );
+  };
+
+  const EmptyState = () => {
+    return (
+      <TableRow>
+      <TableCell colSpan={5} className="text-center py-10 ">
+        <div className="flex flex-col items-center gap-4">
+          <LayoutDashboard className="w-[50px] h-[50px]" />
+          <h1 className="text-[20px] font-[700]">No Category found.</h1>
+          <p className="text-[16px]">
+            Add some Category to start managing your menu.
+          </p>
+        </div>
+      </TableCell>
+    </TableRow>
+    );
+  };
+
+
+  // list categories 
+  const CategoryList = ({ categories }) => {
+    return categories.map((category, index) => (
+      <CategoryCart key={category.id} category={category} index={index} />
+    ));
+  };
+
+  // handel fetch data 
+  const handelListCategories = ({ categories }) => {
+    if (categories === false) {
+      // حالة التحميل (Loading)
+      return (
+        <>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <SkeletonRow key={index} />
+          ))}
+        </>
+      );
+    }
+  
+    if (categories.length === 0) {
+      // حالة عدم وجود بيانات
+      return <EmptyState />;
+    }
+  
+    // حالة عرض الفئات
+    return <CategoryList categories={categories} />;
+  };
+
   return (
     <div>
       <ToastContainer />
@@ -54,7 +124,8 @@ export default function Categories() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {categories.length > 0 ? categories.map((category , index) => {
+            {handelListCategories({categories})}
+            {/* {categories !== false ? categories.map((category , index) => {
               return (
                 <CategoryCart key={category.id} category={category} index={index} />
               )
@@ -78,7 +149,7 @@ export default function Categories() {
                   </TableCell>
                 </TableRow>
               );
-            })}
+            })} */}
           </TableBody>
         </Table>
       </div>

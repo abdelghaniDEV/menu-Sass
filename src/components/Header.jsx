@@ -20,6 +20,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useNavigate } from "react-router";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+
 import Navbar from "./Navbar";
 
 export default function Header({ openMenu, setOpenMenu }) {
@@ -41,9 +47,6 @@ export default function Header({ openMenu, setOpenMenu }) {
           onClick={() => setOpenMenu(true)}
         />
         <div className="md:flex gap-2 items-center hidden md:block ">
-          {/* <div className="absolute top-0 w-full bg-[#F9F9F9] h-screen flex justify-center   " >
-          <Navbar />
-        </div> */}
           <img
             className="w-12 h-12 bg-main-secondary p-1 rounded-full "
             src={logoV3}
@@ -54,7 +57,24 @@ export default function Header({ openMenu, setOpenMenu }) {
           </div>
         </div>
         <div className="flex gap-3">
-          <Bell className="w-10 h-10 bg-main-secondary p-2 rounded-full" />
+          
+          <HoverCard>
+            <HoverCardTrigger>
+            <Bell className="w-10 h-10 bg-main-secondary p-2 rounded-full cursor-pointer" />
+            </HoverCardTrigger>
+            <HoverCardContent className="mx-20 w-[400px]">
+              <div className="flex flex-col gap-1">
+                <span className="font-[500]">You have 5 new notifications</span>
+                <span className="text-[13px]">Check them out</span>
+              </div>
+              <div className="flex gap-2 items-center">
+                <SquareChevronRight className="w-6 h-6" />
+                <Link to="/dashboard/notifications" className="text-[15px]">
+                  View All
+                </Link>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
 
           <DropdownMenu>
             <DropdownMenuTrigger>
@@ -111,6 +131,8 @@ export default function Header({ openMenu, setOpenMenu }) {
         <Card className="p-1 md:p-2  bg-main-secondary">
           <a
             href={`https://menu-demo-aokb.vercel.app//${menu.name}-${menu._id}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex gap-2 items-center"
           >
             <span className="text-[14px] nd:text-[16px] font-[600]">

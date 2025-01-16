@@ -28,17 +28,20 @@ import Menu from "./pages/Menu";
 import logo from "./assets/logo-v3.png"
 import animate from "./assets/aniamte.svg"
 import Otp from "./pages/Otp";
+import Whatssap from "./components/Whatssap";
 
 const ProtectedRoute = ({ children }) => {
   
   const profile = useSelector((state) => state.profile);
-  console.log(profile)
+  console.log(" profile" ,profile)
   const token = localStorage.getItem("authToken");
   if (!token) {
     return <Navigate to="/login" replace />;
   } else if (profile.isInfoAvailable === false) {
     return <Navigate to="/onboarding" replace />;
-  }
+  }else if (profile.isInfoAvailable === false) {
+    return <Navigate to="/verify-email" replace />;
+  } 
   return children;
 };
 
@@ -76,13 +79,7 @@ const HomeLayout = () => (
 );
 
 function App() {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchMenu());
-  //   dispatch(fetchRestuarant());
-  //   dispatch(fetchCategories());
-  //   dispatch(fetchProfile());
-  // }, []);
+
   const profile = useSelector((state) => state.profile);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
@@ -115,6 +112,8 @@ function App() {
   }
 
   return (
+    <>
+    <Whatssap />
     <Routes>
       <Route path="/" element={<HomeLayout />}>
         <Route path="/login" element={<Login />} />
@@ -142,6 +141,7 @@ function App() {
         <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
+    </>
   );
 }
 

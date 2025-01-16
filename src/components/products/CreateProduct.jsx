@@ -112,7 +112,7 @@ export default function CreateProduct() {
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2 ">
           <Link
-            to="/products"
+            to="/dashboard/products"
             className="border-[1px] p-3 hover:bg-main-secondary cursor-pointer  "
           >
             <ArrowLeft className=" w-6 h-6 text-main-primary  " />
@@ -234,10 +234,10 @@ export default function CreateProduct() {
                 </div>
                 <div>
                   {data.image && (
-                    <div className=" border-2 border-[#F5CAAB] rounded-[10px] p-1 ">
+                    <div className=" border-2 border-[#F5CAAB] rounded-[10px] p-1  ">
                       <img
                         src={URL.createObjectURL(data.image)}
-                        className="h-[100px] w-full cursor-pointer"
+                        className="h-[150px] w-full rounded-[10px] cursor-pointer"
                         onClick={() => setImage(null)}
                       />
                     </div>

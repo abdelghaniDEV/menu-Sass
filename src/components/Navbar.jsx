@@ -12,6 +12,8 @@ import {
 import { Link } from "react-router";
   
   export default function Navbar({setOpenMenu}) {
+    const phoneNumber = "+212636998077";
+    const whatsappLink = `https://wa.me/${phoneNumber}`;
     return (
       <>
         <nav className="">
@@ -42,10 +44,10 @@ import { Link } from "react-router";
               <GraduationCap />
               <span>How it Works</span>
             </Link>
-            <Link to={'/dashboard/profile'} className="flex gap-3 items-center" onClick={() => setOpenMenu(false)}>
+            <a href={whatsappLink}  target="_blank"  rel="noopener noreferrer"  className="flex gap-3 items-center" onClick={() => setOpenMenu(false)}>
               <Headset />
               <span>Support</span>
-            </Link>
+            </a>
           </ul>
         </nav>
       </>

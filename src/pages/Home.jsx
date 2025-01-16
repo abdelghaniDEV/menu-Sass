@@ -31,6 +31,7 @@ import restCost from "../assets/res-cost.jpeg";
 import restFood from "../assets/images-food.jpg";
 import menuDigital from "../assets/menu-digital.webp";
 import logo from "../assets/logo-v2.png";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -47,7 +48,7 @@ export default function Home() {
           </p>
           <div className="flex items-center gap-5">
             <Button className="text-main-secondary">Get Start For Free</Button>
-            <Button className="bg-white text-main-primary border-[1.5px]">
+            <Button className="bg-white text-main-primary border-[1.5px] hover:text-white">
               Try Demo
             </Button>
           </div>
@@ -391,6 +392,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
