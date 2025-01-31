@@ -5,7 +5,7 @@ import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 export default function Footer() {
   return (
     <div className="bg-[#0B0F13] w-full  text-neutral-400  p-10">
-      <div className="flex gap-[60px] pb-10">
+      <div className="grid md:grid-cols-4 gap-[20px] md:gap-[70px] pb-10">
         <div>
           <img src={logo} alt="logo" className="w-[150px]" />
           <p className="w-[300px] pt-5">
@@ -64,7 +64,7 @@ export default function Footer() {
         </div>
       </div>
       <hr/> 
-      <div className="flex justify-between pt-10">
+      <div className="md:flex text-center justify-between pt-10">
           <div>
             <p>@2025 Dineo, All rights Reserved </p>
           </div>

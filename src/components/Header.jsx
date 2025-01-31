@@ -36,18 +36,12 @@ export default function Header({ openMenu, setOpenMenu }) {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.profile);
   const menu = useSelector((state) => state.menu);
-
+  const [openNotification , setOpenNotification] = useState(false)
 
   const handlerLogOut = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
-
   };
-
-
-  for (let i = 1; i < 4; i++) {  // كرر الكود 5 مرات
-    console.log("Hello, World!",i++);
-}
 
   return (
     <div className="py-4 ">
@@ -67,39 +61,33 @@ export default function Header({ openMenu, setOpenMenu }) {
           </div>
         </div>
         <div className="flex gap-3 relative">
-          <Dialog className=" bg-black/20 ">
-            <DialogTrigger>
-              <Bell className="w-10 h-10 bg-main-secondary p-2 rounded-full cursor-pointer" />
-            </DialogTrigger>
-            <DialogContent className="top-[40px] translate-x-0 translate-y-0 right-[50px]">
-              <DialogHeader>
-                <DialogTitle>Notification</DialogTitle>
-                <DialogDescription>
-                  <div className="">
-                     <div className="flex gap-3 border-[1px] rounded-[20px] p-2">
-                        <div>
-                           <img src={logoV3} className="w-10 h-10 border-[1px] rounded-full p-1" />
-                        </div>
-                        <div>
-                          <h4 className="text-black font-[500]">Welcome MR <span className="y uppercase text-main-primary font-[600]">{profile.name}</span> to Dineo!</h4>
-                          <p>We’re excited to have you here. Start creating your free digital menu today!</p>
-                        </div>
-                     </div>
-                  </div>
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
-
-          {/* <div className="fixed inset-0 z-50 bg-black/80"></div>
-          <div className="absolute w-[400px] h-[500px] bg-white top-10 z-[1000] p-4  rounded-[10px] shadow-lg right-[100px]">
-            <div className="flex items-center justify-between">
-            <h1 className="text-[25px] font-[500]">Notification </h1>
-            <div className="bg- bg-neutral-400 p-1 rounded-[20px]">
-               <X className="text-white" />
+          <Bell className="w-10 h-10 bg-main-secondary p-2 rounded-full cursor-pointer" onClick={() => setOpenNotification(!openNotification)} />
+          {openNotification &&  <div className="w-[400px] h-[500px] bg-white fixed right-[110px] p-2 top-[50px] shadow-lg border-[1px] z-[1000] rounded-[10px]">
+            <div className="flex items-center justify-between text-[18px] font-[600]">
+              <h3>Notification :</h3>
+              <X className=" bg-main-secondary h-8 w-8 p-1 rounded-full cursor-pointer" onClick={() => setOpenNotification(false)}/>
             </div>
+            <div className="py-2">
+              <div className="flex items-center text-[13px] gap-2 border-[1px] p-1 rounded-[5px]">
+                <img
+                  src={logoV3}
+                  className="w-12 h-12 rounded-full border-[1px] p-1"
+                />
+                <div>
+                  <h4 className="l leading-[10px] text-[16px] pb-1 font-[500]">
+                    {profile.name}
+                  </h4>
+                  <p className="leading-[14px]">
+                    Wolcom MR{" "}
+                    <span className="t uppercase font-[500]">
+                      {profile.name}
+                    </span>{" "}
+                    , New youcant create Menu Degital white Dineo
+                  </p>
+                </div>
+              </div>
             </div>
-          </div> */}
+          </div>}
           <DropdownMenu>
             <DropdownMenuTrigger>
               <img
