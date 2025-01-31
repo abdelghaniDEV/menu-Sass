@@ -25,9 +25,12 @@ import ViewProduct from "./ViewProduct";
 import { Edit, EllipsisVertical, Eye, Trash2 } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { fetchMenu } from "../../redux/slices/menuSlice";
 
 export default function ProductCart({ product }) {
   const [openDelete, setOpenDelete] = useState(false);
+  const dispatch = useDispatch()
 
   const handleDelete = async () => {
     try {
@@ -40,6 +43,7 @@ export default function ProductCart({ product }) {
         }
       );
       console.log("Product deleted successfully", response.data);
+      dispatch(fetchMenu())
       setOpenDelete(false)
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -51,7 +55,7 @@ export default function ProductCart({ product }) {
         <TableCell className="hidden md:table-cell">
           <img
             src={product?.image ? product?.image : meal01}
-            className="rounded-full w-[50px] h-[50px]"
+            className="rounded-full w-[45px] h-[45px]"
             alt="meal01"
           />
         </TableCell>

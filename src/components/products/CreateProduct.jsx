@@ -11,10 +11,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import loadingImg from "../../assets/loading.svg"
+import { fetchMenu } from "../../redux/slices/menuSlice";
 export default function CreateProduct() {
   const categories = useSelector((state) => state.categories);
   const [loading , setLoading] = useState(false)
@@ -30,6 +31,8 @@ export default function CreateProduct() {
     price: "",
     category_id: "",
   });
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     console.log(data);
@@ -97,6 +100,7 @@ export default function CreateProduct() {
           image: null,
         });
         toast.success("Product added successfully");
+        dispatch(fetchMenu())
         setLoading(false)
       } catch (e) {
         console.error(e);

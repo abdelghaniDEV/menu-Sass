@@ -27,6 +27,7 @@ export default function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    responseError: "",
   });
   const [loading , setLoading] = useState(false)
 
@@ -145,7 +146,12 @@ export default function Register() {
         
         if (e.response) {
           console.error("Error:", e.response.data);
-          toast.error(e.response.data.message)
+          
+          setError((prev) => ({
+            ...prev,
+            responseError: e.response.data.message,
+          }))
+          console.log(error)
         } else {
           console.error("Network error or server is down");
           toast.error("Network error")
@@ -165,7 +171,7 @@ export default function Register() {
             Build Your No-Code Menu <span className="text-[#16876D]">Effortlessly</span>
             </h2>
           </div>
-          <form className="py-[10px] mb-[10px] flex flex-col gap-5 " >
+          <form className="py-[10px] mb-[10px] flex flex-col gap-5 relative" >
             <div className="flex flex-col gap-2 relative">
               <Label>Full Name</Label>
               <Input
@@ -240,6 +246,11 @@ export default function Register() {
               {loading ?  <img src={loadingImg} width={30} alt="loading" /> : <span>Sign up</span>}
               
             </Button>
+            {error.responseError && (
+              <p className="text-[14px]   leading-[10px] absolute bottom-[-8px] text-red-500">
+                {error.responseError}
+              </p>
+            )}
           </form>
 
           <div className="flex text-[14px] items-center gap-1 justify-center  absolute bottom-2 ">

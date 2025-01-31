@@ -50,7 +50,7 @@ export default function EditeProduct() {
         name: product?.name || "",
         price: product?.price || "",
         description: product?.description || "",
-        category_id: product?.categoryId._id || "",
+        category_id: product?.categoryId?._id || "",
       });
       setPrevUrl(product?.image);
     }
@@ -102,7 +102,7 @@ export default function EditeProduct() {
       let formData = new FormData();
       if (data.name) formData.append("name", data.name);
       if (data.price) formData.append("price", data.price);
-      if (data.description) formData.append("description", data.description);
+      formData.append("description", data.description);
       if (data.image) formData.append("image", data.image);
       if (data.category_id) formData.append("categoryId", data.category_id);
 
@@ -158,25 +158,28 @@ export default function EditeProduct() {
       <div className="py-6">
         <form className="space-y-4 grid md:grid-cols-2 gap-[20px] items-start">
           <div className="flex flex-col gap-5">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 relative">
               <Label className="">Meal Name</Label>
               <Input
                 type="text"
-                className=" border-gray-300  w-full"
+                // className=" border-gray-300  w-full"
+                className={error.name ? 'border-red-500' : 'border-gray-300'}
                 placeholder="Enter Meal Name"
                 value={data.name}
                 onChange={(e) => setData({ ...data, name: e.target.value })}
               />
+              {error.name && <p className="text-red-500 text-[12px] absolute bottom-[-18px]">{error.name}</p>}
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 relative">
               <Label className="">Meal Price</Label>
               <Input
                 type="number"
-                className=" border-gray-300  w-full"
+                className={error.price ? 'border-red-500' : 'border-gray-300'}
                 placeholder="Enter Meal Name"
                 value={data.price}
                 onChange={(e) => setData({ ...data, price: e.target.value })}
               />
+               {error.price && <p className="text-red-500 text-[12px] absolute bottom-[-18px]">{error.price}</p>}
             </div>
             <div className="flex flex-col gap-2">
               <Label className="">Meal Description</Label>
@@ -195,7 +198,7 @@ export default function EditeProduct() {
               <Select
                 onValueChange={(e) => setData({ ...data, category_id: e })}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className={`w-[180px] ${error.category_id && "border-red-500"}`}>
                   <SelectValue
                     placeholder={
                       oldCategory ? oldCategory : "Select a Category"
@@ -254,7 +257,7 @@ export default function EditeProduct() {
                       src={
                         data?.image ? URL.createObjectURL(data?.image) : prevUrl
                       }
-                      className="h-[100px] w-full cursor-pointer"
+                      className="h-[150px] w-full rounded-[10px] cursor-pointer"
                       // onClick={() => setImage(null)}
                     />
                   </div>

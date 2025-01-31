@@ -144,7 +144,7 @@ export default function Menu() {
                     : prevUrl
                 }
                 // alt="restaurant banner"
-                className="rounded-[10px] object-cover w-[400px] h-[100px]"
+                className="rounded-[10px] object-cover w-[200px] h-[100px]"
                 onClick={() => setTemplate({ ...Template, banner: null })}
               />
             </div>

@@ -12,7 +12,6 @@ import { Link, useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function Login() {
-  const notify = () => toast("Wow so easy!");
 
   const navigate = useNavigate();
 
@@ -25,6 +24,7 @@ export default function Login() {
   const [error, setError] = useState({
     email: "",
     password: "",
+    responseError: "",
   });
 
   const handelRedirect = (data) => {
@@ -120,6 +120,10 @@ export default function Login() {
         setLoading(false);
         if (e.response) {
           console.error("Error:", e.response.data);
+          setError((prev) => ({
+            ...prev,
+            responseError: e.response.data.message,
+          }))
           toast({
             title: e.response.data.message,
             variant: "destructive",
@@ -168,7 +172,7 @@ export default function Login() {
               Log In an Account
             </h2>
           </div>
-          <form className="py-[10px] mb-[10px] flex flex-col gap-5 ">
+          <form className="py-[10px] mb-[10px] flex flex-col gap-5 relative ">
             <div className="flex flex-col gap-2 relative">
               <Label>Email</Label>
               <Input
@@ -215,12 +219,17 @@ export default function Login() {
                 <span>Sign up</span>
               )}
             </Button>
+            {error.responseError && (
+              <p className="text-[14px]  leading-[10px] absolute bottom-[-8px] text-red-500">
+                {error.responseError}
+              </p>
+            )}
           </form>
 
           <div className="flex text-[14px] items-center gap-1 justify-center  absolute bottom-2 ">
-            <span>Already Have a Account?</span> <LogIn className="w-5 h-5" />{" "}
+            <span>You dont Have a Account?</span> <LogIn className="w-5 h-5" />{" "}
             <Link className="font-[600]" to={"/register"}>
-              Log In
+              Register
             </Link>
           </div>
           <div className="absolute bg-main-primary md:w-[50px] w-[20px] h-[300px] top-[-100px] rotate-45"></div>
