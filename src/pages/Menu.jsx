@@ -73,7 +73,7 @@ export default function Menu() {
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("authToken"),
-            "Content-Type": "multipart/form-data", // إضافة نوع المحتوى
+            "Content-Type": "multipart/form-data", 
           },
         }
       );
@@ -101,8 +101,8 @@ export default function Menu() {
   };
 
   return (
-    <Card className="py-5 md:px-5 px-3 md:mx-6 flex gap-8 bg-white ">
-      <div className=" ">
+    <Card className="py-5 md:px-5 px-3 md:mx-6 md:flex md:gap-8 bg-white ">
+      <div className="">
         <ToastContainer />
         <div className="flex flex-col gap-3">
           <Label className="">Restaurant Banner</Label>
@@ -112,7 +112,7 @@ export default function Menu() {
               <label
                 id="input-image"
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center w-[200px] h-[200px] justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-[#EEEEEE]  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                className="flex flex-col items-center md:w-[200px] h-[200px] justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-[#EEEEEE]  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
               >
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                   <ImageUp className="text-main-secondary bg-main-primary p-1 rounded-full h-8 w-8" />
@@ -140,7 +140,7 @@ export default function Menu() {
                     : prevUrl
                 }
                 // alt="restaurant banner"
-                className="rounded-[10px] object-cover w-[200px] h-[100px]"
+                className="rounded-[10px] object-cover w-full md:w-[200px] h-[100px]"
                 onClick={() => setTemplate({ ...Template, banner: null })}
               />
             </div>
@@ -153,13 +153,13 @@ export default function Menu() {
             />
           </div>
         </div>
-        <div className="pt-6 ">
+        <div className="pt-6  ">
           <h2 className="font-[600] text-[20px] py-2">Color Settings</h2>
-          <div className="grid md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {/* color setting */}
-            <div className="flex flex-col justify-center items-start gap-[9px]">
+            <div className="flex flex-col justify-center  items-start gap-[9px]">
               <Label>Primary Color</Label>
-              <div className="flex gap-1 items-center border-[1px] rounded-[20px] pr-3">
+              <div className="flex gap-1 items-center border-[1px]  rounded-[20px] pr-3">
                 <Input
                   type="color"
                   id="style1"
