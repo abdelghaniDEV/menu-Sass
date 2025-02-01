@@ -32,12 +32,13 @@ import restFood from "../assets/images-food.jpg";
 import menuDigital from "../assets/menu-digital.webp";
 import logo from "../assets/logo-v2.png";
 import Footer from "../components/Footer";
+import dashboard from "../assets/Dashboard.png"
 
 export default function Home() {
   return (
     <div className="  ">
-      <div className="relative container my-[20px]">
-        <div className="flex flex-col gap-4 md:gap-6  items-center md:px-[70px]">
+      <div className="relative container mt-[20px]">
+        <div className="flex flex-col gap-4 md:gap-6   items-center md:px-[70px]">
           <h1 className="text-[25px] md:text-[55px] leading-[30px] text-center font-[500] md:leading-[65px]">
             Create your restaurant menu easily and start attracting your
             customers today!
@@ -53,7 +54,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-2  md:grid-cols-5 items-end gap-5 my-4 ">
+        {/* <div className="grid grid-cols-2  md:grid-cols-5 items-end gap-5 my-4 ">
           <Card className="h-[300px] overflow-hidden hidden md:block">
             <img src={image02} alt="hero" />
           </Card>
@@ -71,16 +72,19 @@ export default function Home() {
           <Card className="h-[300px] overflow-hidden">
             <img src={image02} alt="hero" />
           </Card>
+        </div> */}
+        <div className="pt-4 md:h-[520px] h-[190px] overflow-hidden">
+            <img src={dashboard} className="w-full shadow-lg border-[1px] border-main-primary md:shadow-main-primary  md:rounded-[15px]" />
         </div>
         <div className="hidden md:block">
-          <FileText className="absolute h-12 w-12 rounded-full p-3 top-[30%] left-[10%] bg-main-secondary" />
-          <MoveUpRight className="absolute h-10 w-10 p-2 top-[40%] left-[30%] border-[2px] rounded-full border-main-primary" />
+          <FileText className="absolute h-12 w-12 rounded-full p-3 top-[20%] left-[10%] bg-main-secondary" />
+          <MoveUpRight className="absolute h-10 w-10 p-2 top-[26%] left-[30%] border-[2px] rounded-full border-main-primary" />
           <IceCreamBowl className="absolute h-12 w-12 top-0 text-white bg-main-primary p-3 rounded-full" />
-          <ChartNoAxesColumn className="absolute h-12 w-12 top-[40%] text-white right-[30%] bg-main-primary p-3 rounded-full" />
-          <Sparkles className="absolute h-12 w-12 rounded-full p-3 top-[30%] right-[10%] bg-main-secondary" />
+          <ChartNoAxesColumn className="absolute h-12 w-12 top-[26%] text-white right-[30%] bg-main-primary p-3 rounded-full" />
+          <Sparkles className="absolute h-12 w-12 rounded-full p-3 top-[20%] right-[10%] bg-main-secondary" />
         </div>
       </div>
-      <div className="bg-main-primary mt-[50px] ">
+      <div className="bg-main-primary -[50px] ">
         <div className="container text-white py-10">
           <div className="text-center ">
             <h2 className="text-[25px] leading-[25px] md:text-[40px]">

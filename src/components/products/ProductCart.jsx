@@ -108,7 +108,7 @@ export default function ProductCart({ product }) {
             <DropdownMenuTrigger className="md:hidden">
               <EllipsisVertical />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="mx-3">
+            <DropdownMenuContent className="mx-5">
               <DropdownMenuLabel>{product?.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="">

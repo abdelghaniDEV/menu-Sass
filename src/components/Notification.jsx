@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import React from "react";
 import logoV3 from "../assets/logo-v3.png";
 
-export default function Notification({setOpenNotification , profile}) {
+export default function Notification({ setOpenNotification, profile }) {
   return (
     <div className="w-full md:w-[400px] max-h-[500px] bg-white fixed right-0 md:right-[110px] p-2 top-[70px] md:top-[50px] shadow-lg border-[1px] z-[1000] rounded-[10px]">
       <div className="flex items-center justify-between text-[18px] font-[600]">
@@ -23,9 +23,9 @@ export default function Notification({setOpenNotification , profile}) {
               {profile.name}
             </h4>
             <p className="leading-[14px]">
-              Wolcom MR{" "}
-              <span className="t uppercase font-[500]">{profile.name}</span> ,
-              New youcant create Menu Degital white Dineo
+              Welcome, Mr.
+              <span className="t uppercase font-[500]">{profile.name}</span> , !
+              🎉 Now you can create a Digital Menu with Dineo. 🚀
             </p>
           </div>
         </div>
