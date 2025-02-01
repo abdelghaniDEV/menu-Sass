@@ -25,9 +25,7 @@ export default function Menu() {
   const [showBanner, setShowBanner] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    console.log(Template);
-  }, [Template]);
+
 
   const menu = useSelector((state) => state.menu);
 
@@ -48,8 +46,6 @@ export default function Menu() {
 
   const handelSubmite = async (e) => {
     e.preventDefault();
-
-    console.log("Current Template Data:", Template);
 
     const formData = new FormData();
 

@@ -34,10 +34,6 @@ export default function CreateProduct() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   const checkData = () => {
     let isValid = true;
     let newError = { ...error };

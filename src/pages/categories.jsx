@@ -71,14 +71,13 @@ export default function Categories() {
   // list categories 
   const CategoryList = ({ categories }) => {
     return categories.map((category, index) => (
-      <CategoryCart key={category.id} category={category} index={index} />
+      <CategoryCart key={category._id} category={category} index={index} />
     ));
   };
 
   // handel fetch data 
   const handelListCategories = ({ categories }) => {
-    if (categories === false) {
-      // حالة التحميل (Loading)
+    if (categories === false) { 
       return (
         <>
           {Array.from({ length: 10 }).map((_, index) => (
@@ -89,11 +88,11 @@ export default function Categories() {
     }
   
     if (categories.length === 0) {
-      // حالة عدم وجود بيانات
+     
       return <EmptyState />;
     }
   
-    // حالة عرض الفئات
+    
     return <CategoryList categories={categories} />;
   };
 
@@ -125,31 +124,7 @@ export default function Categories() {
           </TableHeader>
           <TableBody>
             {handelListCategories({categories})}
-            {/* {categories !== false ? categories.map((category , index) => {
-              return (
-                <CategoryCart key={category.id} category={category} index={index} />
-              )
-            }): Array.from({ length: 10 }).map((_, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell>
-                    <Skeleton className="w-10 h-5" />{" "}
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="w-[200px] h-5" />{" "}
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="w-[100px] h-5" />{" "}
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="w-[200px] h-5" />{" "}
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="w-[200px] h-5" />{" "}
-                  </TableCell>
-                </TableRow>
-              );
-            })} */}
+            
           </TableBody>
         </Table>
       </div>

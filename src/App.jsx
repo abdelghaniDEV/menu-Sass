@@ -33,7 +33,7 @@ import Whatssap from "./components/Whatssap";
 const ProtectedRoute = ({ children }) => {
   
   const profile = useSelector((state) => state.profile);
-  console.log(" profile" ,profile)
+ 
   const token = localStorage.getItem("authToken");
   if (!token) {
     return <Navigate to="/login" replace />;
