@@ -4,7 +4,7 @@ import logoV3 from "../assets/logo-v3.png";
 
 export default function Notification({setOpenNotification , profile}) {
   return (
-    <div className="w-[400px] max-h-[500px] bg-white fixed right-5 md:right-[110px] p-2 top-[70px] md:top-[50px] shadow-lg border-[1px] z-[1000] rounded-[10px]">
+    <div className="w-full md:w-[400px] max-h-[500px] bg-white fixed right-0 md:right-[110px] p-2 top-[70px] md:top-[50px] shadow-lg border-[1px] z-[1000] rounded-[10px]">
       <div className="flex items-center justify-between text-[18px] font-[600]">
         <h3>Notification :</h3>
         <X
